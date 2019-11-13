@@ -1,5 +1,7 @@
+from __future__ import division
 import collections
 import operator
+
 class node:
     def __init__(self,name):
         self.name=name
@@ -12,22 +14,51 @@ class node:
     def get_pageRank(self):
         return self.pageRank
 
-    def calculate_page_rank(b, j, maxIterations):
-        #init
-        for node  in self.nodes:
-            node.pageRank=1/(globals()['numOfNodes'])
-        
 
 
 
 class graph:
     def __init__(self):
         self.nodes={}
+        numOfNodes=0
 
 
     def getNodes(self):
         return self.nodes
 
+    def calculate_page_rank(self,b, j, maxIterations):
+        # init
+        curIteration = 0
+        i=0
+        while(i<len(self.nodes)) :
+           self.nodes.values()[i].pageRank= float(1) / self.numOfNodes
+           i=i+1
+        #start new iteration
+        while (curIteration < maxIterations):
+            delta=0;
+            extra =0
+            curIteration = curIteration + 1
+            calulationTable = {}
+            for curNode in self.nodes.values():
+                for neighbor in curNode.dest:
+                    if (calulationTable.get(neighbor)!=None):
+                        calulationTable[neighbor]= calulationTable[neighbor] +b*(curNode.get_pageRank()/len(curNode.dest))
+                    else:
+                        calulationTable[neighbor]=b*(curNode.get_pageRank()/len(curNode.dest))
+                extra=extra+(1-b)*curNode.get_pageRank()
+
+            #need to insert to each Node part of extra. (when b<1)
+            extraPerNode= extra/self.numOfNodes
+            for node in self.nodes.values():
+                prvPageRank = node.get_pageRank()
+                if (calulationTable.has_key(int(node.name))):
+                    node.pageRank=calulationTable[int(node.name)]+extraPerNode
+                else:
+                    node.pageRank = node.get_pageRank()+extraPerNode
+                delta=delta+abs(prvPageRank-node.get_pageRank())
+           #in case delta smaller than given epsilon
+            if (delta<j):
+                break
 
 
     #Returns the PageRank of a specific node.
