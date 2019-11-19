@@ -66,19 +66,6 @@ def main():
    # load_graph("C:\\Users\\Sahar Ben Baruch\Desktop\\anybeatAnonymized\\anybeatAnonymized\\anybeatAnonymized.csv")
     ourGraph.calculate_page_rank (0.85, 0.001, 20)
     print (ourGraph.get_top_nodes(10))
-    print ("---------")
-
-    import pandas as pd
-
-    ts_data = pd.read_csv("C:\\Users\\Sahar Ben Baruch\\Desktop\\Wikipedia_votes.csv")
-    # Create blank graph
-    D = nx.DiGraph()
-    D.add_weighted_edges_from([(30, 1412, 1)])
-
-    for x in range(0, len(ts_data)):
-        D.add_weighted_edges_from([(ts_data['30'][x], ts_data['1412'][x], 1)])
-
-    # Print page rank for each pages
-    print (nx.pagerank(D))
+   
 if __name__ == "__main__":
     main()
