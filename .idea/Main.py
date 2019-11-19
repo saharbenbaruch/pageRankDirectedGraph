@@ -66,6 +66,6 @@ def main():
    # load_graph("C:\\Users\\Sahar Ben Baruch\Desktop\\anybeatAnonymized\\anybeatAnonymized\\anybeatAnonymized.csv")
     ourGraph.calculate_page_rank (0.85, 0.001, 20)
     print (ourGraph.get_top_nodes(10))
-   
+
 if __name__ == "__main__":
     main()

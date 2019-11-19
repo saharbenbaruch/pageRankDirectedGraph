@@ -21,10 +21,10 @@ The graph is global variable .
 calculate_page_rank (beta, epsilon, maxIteration) - generate by graph object.
 Its run over all nodes from nodes dictionary and use different dictionary calls 'calculateTable'
 to save the sum contribution of current node (in act of source) in page rank of destination node.
+we calculate (1-s)/ numOfNodes and give that to each node in the end of each iteration.
+
 
 for example, node A has edge to node B.
-A' rank is 5  -> B will get 1/5 * a'rank * beta.
-
-in the end of iteration, we split between all nodes the extra rank left( in case of beta<1).
+A' rank is 5  -> B will get 1/5 * a'rank * beta + (1-s)/numOfNodes
 
 we check that total epsilon is lower than given epsilon, else - break.
